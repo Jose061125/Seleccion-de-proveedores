@@ -94,3 +94,4 @@ Ejemplo de columnas:
 
 - Explicacion funcional y tecnica: `docs/EXPLICACION_FUNCIONAMIENTO.md`
 - Informe academico completo: `docs/INFORME_ACADEMICO.md`
+- Ejemplo guiado de interfaz: `docs/EJEMPLO_GUIADO_INTERFAZ.md`
