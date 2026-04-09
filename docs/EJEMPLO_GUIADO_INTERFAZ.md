@@ -41,6 +41,31 @@ Como explicarlo:
 - Cada columna representa una caracteristica (precio, calidad, etc.).
 - La columna objetivo indica si en el pasado ese proveedor fue seleccionado.
 
+### Significado de cada columna del CSV
+
+- Proveedor:
+	nombre o identificador del proveedor.
+- Precio:
+	costo ofertado por el proveedor.
+- Calidad:
+	calificacion numerica de calidad del proveedor o de su oferta.
+- TiempoEntregaDias:
+	cantidad de dias que tarda en entregar.
+- CumplimientoHistorico:
+	indicador historico de cumplimiento, normalmente expresado como porcentaje.
+- CertificacionISO:
+	indica si el proveedor cuenta con certificacion ISO.
+- Ubicacion:
+	procedencia geografica del proveedor, por ejemplo Local, Nacional, Regional o Internacional.
+- Seleccionado:
+	indica si el proveedor fue aprobado o no en decisiones anteriores.
+
+### Variable objetivo
+
+La variable objetivo del modelo es `Seleccionado`.
+
+Esto significa que el sistema usa el resto de columnas como variables de entrada para predecir si un proveedor debe clasificarse como seleccionado (`Si`) o no seleccionado (`No`).
+
 ## Paso 3. Configurar el problema de clasificacion
 
 En la barra lateral:

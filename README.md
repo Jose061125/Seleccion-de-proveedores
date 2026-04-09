@@ -71,6 +71,10 @@ La aplicacion abrira en el navegador y te permitira usar:
 
 Debe incluir una columna objetivo de clasificacion (por ejemplo, `Seleccionado`) y columnas predictoras numericas y/o categoricas.
 
+Variable objetivo por defecto:
+
+- `Seleccionado`: indica si historicamente el proveedor fue aprobado (`Si`) o no (`No`).
+
 Ejemplo de columnas:
 
 - `Proveedor`

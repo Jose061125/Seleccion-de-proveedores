@@ -24,28 +24,65 @@ st.set_page_config(page_title="Seleccion de Proveedores", page_icon="📊", layo
 st.markdown(
         """
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Bitter:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@700;800;900&display=swap');
 
         :root {
-            --ink: #11242b;
-            --text: #153640;
-            --accent: #0f9d8f;
-            --warm: #f0a03b;
-            --mist: #f4f8f9;
-            --panel: rgba(255, 255, 255, 0.78);
-            --line: #bfd4d8;
+            --bg:      #f0f4ff;
+            --surface: #ffffff;
+            --border:  #d4daf5;
+            --ink:     #070b22;
+            --text:    #17233d;
+            --muted:   #4b5c7c;
+            --accent:  #4f46e5;
+            --accent2: #7c3aed;
+            --warm:    #f59e0b;
+            --ok:      #10b981;
+            --panel:   #ffffff;
         }
 
-        html, body, [class*="css"]  {
-            font-family: 'Space Grotesk', sans-serif;
+        html, body, [class*="css"] {
+            font-family: 'Inter', sans-serif;
+            font-size: 15.5px;
+            line-height: 1.7;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        h2 { font-size: 1.45rem; font-weight: 800; }
+        h3 { font-size: 1.2rem;  font-weight: 700; }
+        h4 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.2px; }
+
+        [data-testid="stHeadingWithActionElements"] h1,
+        [data-testid="stHeadingWithActionElements"] h2,
+        [data-testid="stHeadingWithActionElements"] h3,
+        [data-testid="stHeadingWithActionElements"] h4,
+        [data-testid="stMarkdownContainer"] h1,
+        [data-testid="stMarkdownContainer"] h2,
+        [data-testid="stMarkdownContainer"] h3,
+        [data-testid="stMarkdownContainer"] h4 {
+            color: var(--ink) !important;
+            opacity: 1 !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 800 !important;
+        }
+
+        p, li, span, td, th, label {
+            font-family: 'Inter', sans-serif;
             color: var(--text);
         }
 
         [data-testid="stAppViewContainer"] {
-            background:
-                radial-gradient(1200px 420px at 5% -20%, rgba(15,157,143,0.18), transparent 65%),
-                radial-gradient(920px 360px at 90% -15%, rgba(240,160,59,0.20), transparent 70%),
-                linear-gradient(180deg, #f6fafb 0%, #eef5f5 60%, #f8faf8 100%);
+            background: var(--bg);
         }
 
         [data-testid="stHeader"] {
@@ -53,172 +90,252 @@ st.markdown(
         }
 
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #0d3542 0%, #164757 100%);
-            border-right: 1px solid rgba(255, 255, 255, 0.14);
+            background: linear-gradient(180deg, #0f1535 0%, #1a2550 100%);
+            border-right: 1px solid rgba(79,70,229,0.25);
         }
 
-        section[data-testid="stSidebar"] * {
-            color: #e8f7f6;
+        section[data-testid="stSidebar"] *,
+        section[data-testid="stSidebar"] label,
+        section[data-testid="stSidebar"] p,
+        section[data-testid="stSidebar"] span {
+            color: #e2e8f8 !important;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+        }
+
+        section[data-testid="stSidebar"] h1,
+        section[data-testid="stSidebar"] h2,
+        section[data-testid="stSidebar"] h3 {
+            color: #ffffff !important;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stButton > button {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            border-radius: 10px;
+            padding: .5rem 1.2rem;
+            transition: opacity .2s;
+        }
+
+        .stButton > button:hover {
+            opacity: .88;
         }
 
         .hero-card {
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            padding: 1.15rem 1.4rem;
-            background: linear-gradient(130deg, rgba(255,255,255,0.94) 0%, rgba(232,245,245,0.92) 100%);
-            box-shadow: 0 12px 28px rgba(10, 33, 43, 0.08);
-            margin-bottom: 1rem;
-            animation: rise .55s ease-out;
-        }
-
-        .status-ribbon {
-            border: 1px solid rgba(15,157,143,0.35);
-            border-radius: 12px;
-            padding: .55rem .8rem;
-            margin: 0 0 1rem;
-            background: linear-gradient(90deg, rgba(15,157,143,0.10), rgba(240,160,59,0.10));
-            font-size: .88rem;
-            color: #184650;
-        }
-
-        .dataset-mini {
-            border: 1px solid #c9dde0;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.85);
-            padding: .65rem .8rem;
-            margin-bottom: .7rem;
-        }
-
-        .dataset-mini .label {
-            font-size: .78rem;
-            color: #4a6a74;
-            margin-bottom: .12rem;
-        }
-
-        .dataset-mini .value {
-            font-size: 1.12rem;
-            font-weight: 700;
-            color: #0d5d66;
-        }
-
-        .kpi-tile {
-            border: 1px solid #c3dadc;
-            border-radius: 14px;
-            padding: .62rem .85rem;
-            background: linear-gradient(160deg, rgba(255,255,255,0.95), rgba(233,245,244,0.95));
-            box-shadow: 0 8px 18px rgba(8, 41, 45, 0.07);
-            height: 100%;
-            animation: rise .6s ease-out;
-        }
-
-        .kpi-title {
-            font-size: .78rem;
-            color: #3f6670;
-            margin-bottom: .1rem;
-        }
-
-        .kpi-value {
-            font-size: 1.6rem;
-            line-height: 1.15;
-            color: #0c6c73;
-            font-weight: 700;
-        }
-
-        .kpi-subtitle {
-            margin-top: .2rem;
-            font-size: .74rem;
-            color: #53757e;
-        }
-
-        .section-title {
-            font-family: 'Bitter', serif;
-            color: #16343d;
-            letter-spacing: 0.2px;
-            margin-bottom: .35rem;
-        }
-
-        .stTabs [data-baseweb="tab-list"] {
-            gap: .35rem;
-        }
-
-        .stTabs [data-baseweb="tab"] {
-            background: rgba(255,255,255,0.75);
-            border: 1px solid #c9dcdf;
-            border-radius: 10px;
-            padding: .4rem .8rem;
-        }
-
-        .stTabs [aria-selected="true"] {
-            border-color: #67aba8;
-            background: rgba(15,157,143,0.14);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.4rem 1.8rem;
+            background: linear-gradient(135deg, #ffffff 0%, #eef0fe 100%);
+            box-shadow: 0 4px 24px rgba(79,70,229,0.10);
+            margin-bottom: 1.2rem;
+            animation: rise .5s ease-out;
         }
 
         .hero-card h1 {
-            font-family: 'Bitter', serif;
-            letter-spacing: 0.2px;
-            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.55rem, 2.8vw, 2.25rem);
             color: var(--ink);
-            font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+            letter-spacing: -0.8px;
+            line-height: 1.15;
+            margin: 0 0 .45rem;
         }
 
         .hero-card p {
-            margin: .35rem 0 0;
-            font-size: .97rem;
-            color: #335864;
+            font-size: 1.02rem;
+            font-weight: 400;
+            color: var(--muted);
+            line-height: 1.65;
+            margin: 0;
         }
 
         .chip-row {
             display: flex;
-            gap: .45rem;
+            gap: .4rem;
             flex-wrap: wrap;
-            margin-top: .65rem;
+            margin-top: .75rem;
         }
 
         .chip {
-            border: 1px solid rgba(15,157,143,0.35);
+            border: 1px solid rgba(79,70,229,0.30);
             border-radius: 999px;
-            padding: .18rem .58rem;
-            font-size: .76rem;
-            color: #0b6f67;
-            background: rgba(15,157,143,0.08);
+            padding: .2rem .65rem;
+            font-size: .75rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: rgba(79,70,229,0.07);
+        }
+
+        .status-ribbon {
+            border-left: 4px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: .6rem 1.1rem;
+            margin: 0 0 1.2rem;
+            background: rgba(79,70,229,0.06);
+            font-size: .92rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--ink);
+            letter-spacing: .1px;
+        }
+
+        .dataset-mini {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--surface);
+            padding: .75rem 1rem;
+            margin-bottom: .8rem;
+            box-shadow: 0 2px 8px rgba(15,21,53,0.05);
+        }
+
+        .dataset-mini .label {
+            font-family: 'Inter', sans-serif;
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .9px;
+            margin-bottom: .2rem;
+        }
+
+        .dataset-mini .value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--ink);
+        }
+
+        .kpi-tile {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: .85rem 1rem;
+            background: var(--surface);
+            box-shadow: 0 4px 16px rgba(15,21,53,0.07);
+            height: 100%;
+            animation: rise .55s ease-out;
+        }
+
+        .kpi-title {
+            font-family: 'Inter', sans-serif;
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: .25rem;
+        }
+
+        .kpi-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            line-height: 1.05;
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .kpi-subtitle {
+            margin-top: .3rem;
+            font-size: .75rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: var(--ink);
+            font-size: 1.25rem;
+            letter-spacing: -0.4px;
+            margin-bottom: .5rem;
         }
 
         .panel {
-            border: 1px solid #d0e1e3;
-            border-radius: 14px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
             background: var(--panel);
-            box-shadow: 0 10px 22px rgba(9, 33, 41, 0.05);
-            padding: .55rem .8rem .8rem;
-            margin-bottom: .9rem;
-            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 16px rgba(15,21,53,0.05);
+            padding: 1rem 1.1rem 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .panel h4, .panel h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -0.2px;
+            margin-bottom: .55rem;
+        }
+
+        .stTabs [data-baseweb="tab-list"] {
+            gap: .4rem;
+            background: transparent;
+        }
+
+        .stTabs [data-baseweb="tab"] {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: .5rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: .88rem;
+            color: var(--muted);
+            letter-spacing: .1px;
+        }
+
+        .stTabs [aria-selected="true"] {
+            border-color: var(--accent);
+            background: rgba(79,70,229,0.09);
+            color: var(--accent) !important;
+            font-weight: 700;
         }
 
         [data-testid="stMetricValue"] {
-            color: #0b6f67;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
             font-weight: 700;
         }
 
         [data-testid="stDataFrame"] {
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid #c8dcdf;
+            border: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        [data-testid="stDataFrame"] th {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 12.5px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        code, pre {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 13px;
+            line-height: 1.7;
         }
 
         @keyframes rise {
-            from { transform: translateY(8px); opacity: 0; }
-            to   { transform: translateY(0); opacity: 1; }
+            from { transform: translateY(6px); opacity: 0; }
+            to   { transform: translateY(0);   opacity: 1; }
         }
 
         @media (max-width: 900px) {
-            .hero-card {
-                padding: 1rem 1rem;
-            }
-            .panel {
-                padding: .5rem .55rem .65rem;
-            }
-            .kpi-value {
-                font-size: 1.35rem;
-            }
+            .hero-card { padding: 1rem 1.1rem; }
+            .kpi-value { font-size: 1.5rem; }
+            .panel     { padding: .7rem .8rem .9rem; }
         }
         </style>
         """,
