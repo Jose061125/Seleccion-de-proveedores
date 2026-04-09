@@ -7,9 +7,11 @@ Proyecto de "Desarrollo e implementacion de un sistema de seleccion de proveedor
 Construir una aplicacion que permita:
 
 - Cargar datos de proveedores (CSV).
-- Entrenar un modelo de clasificacion con arboles de decision.
-- Evaluar el rendimiento del modelo con metricas clave.
-- Interpretar decisiones mediante reglas del arbol e importancia de variables.
+- Entrenar un modelo de clasificacion principal.
+- Comparar varios modelos de machine learning.
+- Evaluar el rendimiento con metricas y validacion cruzada.
+- Interpretar decisiones mediante reglas del arbol, grafico e importancia de variables.
+- Guardar, cargar y exportar resultados del modelo.
 - Realizar predicciones sobre nuevos proveedores.
 
 ## Stack Tecnologico
@@ -60,12 +62,14 @@ La aplicacion abrira en el navegador y te permitira usar:
 ## Flujo de Uso en la App
 
 1. Seleccionar fuente de datos (ejemplo o archivo CSV).
-2. Elegir columna objetivo (por defecto `Seleccionado`).
-3. Configurar variables predictoras y parametros del arbol.
-4. Entrenar el modelo.
-5. Revisar metricas, matriz de confusion, reporte e importancia de variables.
-6. Consultar reglas del arbol para interpretabilidad.
-7. Probar predicciones para un nuevo proveedor.
+2. Elegir columna objetivo y variables predictoras.
+3. Seleccionar modelo principal y parametros de entrenamiento.
+4. Ejecutar entrenamiento y validacion cruzada.
+5. Revisar metricas, matriz de confusion y reporte de clasificacion.
+6. Comparar el rendimiento entre Arbol de decision, Random Forest y Regresion logistica.
+7. Consultar importancia de variables, reglas y visualizacion del arbol.
+8. Probar predicciones para un nuevo proveedor.
+9. Descargar resultados o guardar/cargar el modelo entrenado.
 
 ## Formato Recomendado del CSV
 
@@ -92,7 +96,14 @@ Ejemplo de columnas:
 	- Imputacion de valores faltantes numericos con mediana.
 	- Imputacion de categoricos con valor mas frecuente.
 	- Codificacion one-hot para columnas categoricas.
-- El modelo es interpretable y orientado a toma de decision empresarial.
+- La aplicacion incluye comparacion automatica entre tres modelos:
+	- Arbol de decision.
+	- Random Forest.
+	- Regresion logistica.
+- Se incorpora validacion cruzada para evaluar estabilidad del modelo.
+- Es posible descargar el modelo entrenado en formato `.joblib` y volver a cargarlo.
+- Se pueden exportar reportes, matriz de confusion, comparacion de modelos y validacion cruzada en CSV.
+- El modelo sigue orientado a toma de decision empresarial e interpretabilidad.
 
 ## Documentacion para Exposicion
 
